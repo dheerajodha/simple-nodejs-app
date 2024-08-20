@@ -7,7 +7,7 @@ spec:
     - name: checkout-source
       image: alpine/git
       script: |
-        git clone -b master https://github.com/chipspeak/simple-nodejs-app /workspace
+        git clone -b prepare-demo-for-pat https://github.com/dheerajodha/simple-nodejs-app /workspace
     - name: install-pkg-and-deps
       image: node:14
       workingDir: /workspace

@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: test-task
+spec:
+  steps:
+    - name: checkout-source
+      image: alpine/git
+      script: |
+        git clone -b prepare-demo-for-pat https://github.com/dheerajodha/simple-nodejs-app /workspace
+    - name: install-pkg-and-deps
+      image: node:14
+      workingDir: /workspace
+      script: |
+        npm install
+        npm install -g pkg
+        # Use pkg to create a binary
+        pkg app.js --output app-binary
+    - name: list-files
+      image: alpine
+      script: |
+        ls -l /workspace
+    - name: run-ui-tests
+      image: cypress/included:13.13.0
+      workingDir: /workspace
+      script: |
+        # Start the application using the binary
+        ./app-binary &
+        sleep 10
+        # Run Cypress tests
+        cypress run --spec cypress/e2e/spec.cy.js

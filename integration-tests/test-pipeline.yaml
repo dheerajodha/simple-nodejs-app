@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: test-pipeline
+spec:
+  tasks:
+    - name: test-task
+      taskRef:
+        resolver: git
+        params:
+        - name: url 
+          value: https://github.com/dheerajodha/simple-nodejs-app
+        - name: revision
+          value: prepare-demo-for-pat
+        - name: pathInRepo
+          value: integration-tests/test-task.yaml

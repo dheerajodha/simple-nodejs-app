@@ -5,6 +5,6 @@ describe('the spec to test the-mentalist project', () => {
     })
 
     it('verifies the text displayed on screen', () => {
-      cy.contains('Hello World!')
+      cy.contains('Hello Tech Meetup!')
     })
 })

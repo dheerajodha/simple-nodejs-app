@@ -7,9 +7,9 @@ spec:
     resolver: git
     params:
     - name: url 
-      value: https://github.com/dheerajodha/simple-nodejs-app
+      value: https://github.com/chipspeak/simple-nodejs-app
     - name: revision
-      value: prepare-demo-for-pat
+      value: master
     - name: pathInRepo
       value: integration-tests/test-pipeline.yaml
   workspaces:

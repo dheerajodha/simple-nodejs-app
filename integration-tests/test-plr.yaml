@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: test-plr
+spec:
+  pipelineRef:
+    resolver: git
+    params:
+    - name: url 
+      value: https://github.com/dheerajodha/simple-nodejs-app
+    - name: revision
+      value: prepare-demo-for-pat
+    - name: pathInRepo
+      value: integration-tests/test-pipeline.yaml
+  workspaces:
+    - name: source
+      persistentVolumeClaim:
+        claimName: my-pvc
